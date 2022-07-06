@@ -1,36 +1,29 @@
-
-function ListNode(val, next) {
-     this.val = (val===undefined ? 0 : val)
-     this.next = (next===undefined ? null : next)
-}
- 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
+var reverseList = function(head) {
+       if(head == null || head.next == null) return head;
 
-const reverseList = function(head) {
-    let temp = null;
-    let string = '';
-    let newHead = null;
-    
-    if(head === null) return null; 
-    
-    const recursiveCalls = (node) => {
-        
-        if (node.next) 
-            recursiveCalls(node.next);
-        
-        if (newHead === null) {
-            newHead = new ListNode(node.val);
-            temp = newHead;
-        }else {
-            temp.next = new ListNode(node.val);
+        let prev = null;
+        let temp = head;
+  
+        while (temp != null) {
+            let node = temp;
             temp = temp.next;
-        }       
-    }
-    
-    recursiveCalls(head);
-    
-    return newHead;
+            node.next = prev;
+            prev = node;
+            
+        }
+             
+        head = prev;
+
+        return head;
 };
